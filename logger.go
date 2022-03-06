@@ -21,15 +21,15 @@ type Logger interface {
 	Error(args ...interface{})
 }
 
-func (logger) Info(args ...interface{}) {
+func (*logger) Info(args ...interface{}) {
 	fmt.Printf("[INFO] %s %s", append([]interface{}{dt.Format("01-02-2006 15:04:05")}, args...)...)
 }
 
-func (logger) Warn(args ...interface{}) {
+func (*logger) Warn(args ...interface{}) {
 	fmt.Printf("[WARN] %s %s", append([]interface{}{dt.Format("01-02-2006 15:04:05")}, args...)...)
 }
 
-func (logger) Error(args ...interface{}) {
+func (*logger) Error(args ...interface{}) {
 	fmt.Printf("[ERROR] %s %s", append([]interface{}{dt.Format("01-02-2006 15:04:05")}, args...)...)
 }
 

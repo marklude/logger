@@ -3,8 +3,6 @@ package logger
 import (
 	"fmt"
 	"time"
-
-	"github.com/rotisserie/eris"
 )
 
 type Logger struct {
@@ -23,9 +21,9 @@ func (Logger) Warn(args ...interface{}) {
 	fmt.Printf("[WARN] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
-func (Logger) Error(err error, args ...interface{}) {
+func (Logger) Error(args ...interface{}) {
 	dt = time.Now()
-	eris.Wrapf(err, "[ERROR] %v %v\n")
+	fmt.Printf("[ERROR] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
 func NewLogger(env string) *Logger {

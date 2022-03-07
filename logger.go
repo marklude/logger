@@ -1,8 +1,9 @@
 package logger
 
 import (
-	"fmt"
 	"time"
+
+	"github.com/rotisserie/eris"
 )
 
 type Logger struct {
@@ -11,19 +12,19 @@ type Logger struct {
 
 var dt time.Time
 
-func (Logger) Info(args ...interface{}) {
+func (Logger) Info(err error, args ...interface{}) {
 	dt = time.Now()
-	fmt.Printf("[INFO] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
+	eris.Wrapf(err, "[INFO] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
-func (Logger) Warn(args ...interface{}) {
+func (Logger) Warn(err error, args ...interface{}) {
 	dt = time.Now()
-	fmt.Printf("[WARN] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
+	eris.Wrapf(err, "[WARN] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
-func (Logger) Error(args ...interface{}) {
+func (Logger) Error(err error, args ...interface{}) {
 	dt = time.Now()
-	fmt.Printf("[ERROR] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
+	eris.Wrapf(err, "[ERROR] %v %v\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
 func NewLogger(env string) *Logger {

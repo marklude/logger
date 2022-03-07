@@ -5,34 +5,25 @@ import (
 	"time"
 )
 
-type logger struct {
+type Logger struct {
 	env string
 }
 
-var dt time.Time
-
-func Init() {
-	dt = time.Now()
-}
-
-type Logger interface {
-	Info(args ...interface{})
-	Warn(args ...interface{})
-	Error(args ...interface{})
-}
-
-func (logger) Info(args ...interface{}) {
+func (Logger) Info(args ...interface{}) {
+	dt := time.Now()
 	fmt.Printf("[INFO] %s %s", append([]interface{}{dt.Format("01-02-2006 15:04:05")}, args...)...)
 }
 
-func (logger) Warn(args ...interface{}) {
+func (Logger) Warn(args ...interface{}) {
+	dt := time.Now()
 	fmt.Printf("[WARN] %s %s", append([]interface{}{dt.Format("01-02-2006 15:04:05")}, args...)...)
 }
 
-func (logger) Error(args ...interface{}) {
+func (Logger) Error(args ...interface{}) {
+	dt := time.Now()
 	fmt.Printf("[ERROR] %s %s", append([]interface{}{dt.Format("01-02-2006 15:04:05")}, args...)...)
 }
 
-func NewLogger(env string) Logger {
-	return &logger{env: env}
+func NewLogger(env string) *Logger {
+	return &Logger{env: env}
 }

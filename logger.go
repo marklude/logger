@@ -11,19 +11,18 @@ type Logger struct {
 
 var dt time.Time
 
-func init() {
-	dt = time.Now()
-}
-
 func (Logger) Info(args ...interface{}) {
+	dt = time.Now()
 	fmt.Printf("[INFO] %s %s\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
 func (Logger) Warn(args ...interface{}) {
+	dt = time.Now()
 	fmt.Printf("[WARN] %s %s\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
 func (Logger) Error(args ...interface{}) {
+	dt = time.Now()
 	fmt.Printf("[ERROR] %s %s\n", append([]interface{}{dt.Format("02-01-2006 15:04:05")}, args...)...)
 }
 
